@@ -18,8 +18,8 @@ basic(){
     irled="?"
     maxgpio="95"
   elif [[ "${hardware}" == 'hi3518ev200' ]]; then
-    ircut1="33"
-    ircut2="34"
+    ircut1="1"
+    ircut2="2"
     irled="?"
     maxgpio="71"
   fi

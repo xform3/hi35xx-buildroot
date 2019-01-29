@@ -135,4 +135,10 @@ config BR2_LINUX_KERNEL_EXT_WIFI
 	help
 	  Enable WiFi support in kernel
 
+#-------------------------------------------------------------------------------
+# enable Sound
+config BR2_LINUX_KERNEL_EXT_SOUND
+	bool "enable Sound support in kernel"
+	help
+	  Enable Sound support in kernel
 endmenu

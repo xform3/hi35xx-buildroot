@@ -1,0 +1,76 @@
+diff -Nau a/src/platform/hi3518v200/himpp-video-sensor.cpp b/src/platform/hi3518x200/himpp-video-sensor.cpp
+--- a/src/platform/hi3518v200/himpp-video-sensor.cpp	2019-01-21 20:58:11.114546904 +0500
++++ b/src/platform/hi3518x200/himpp-video-sensor.cpp	2019-01-21 20:58:23.546482560 +0500
+@@ -866,6 +866,64 @@
+ };
+ 
+ 
++/***************************************************************************
++ * Sony IMX323
++ ***************************************************************************/
++
++static combo_dev_attr_t sony_imx323_combo_dev_attr = {
++	.input_mode = INPUT_MODE_CMOS_33V
++};
++
++static ISP_PUB_ATTR_S sony_imx323_pub_attr = {
++	.stWndRect          = {
++		.s32X           = 200,
++		.s32Y           = 20,
++		.u32Width       = 1920,
++		.u32Height      = 1080,
++	},
++	.f32FrameRate       = 30,
++	.enBayer            = BAYER_RGGB
++};
++
++static VI_DEV_ATTR_S sony_imx323_dev_attr = {
++	.enIntfMode     = VI_MODE_DIGITAL_CAMERA,
++	.enWorkMode     = VI_WORK_MODE_1Multiplex,
++	.au32CompMask   = { 0x3FF0000, 0x0 },
++	.enScanMode     = VI_SCAN_PROGRESSIVE,
++	.s32AdChnId     = { -1, -1, -1, -1 },
++	.enDataSeq      = VI_INPUT_DATA_YUYV,
++	.stSynCfg       = {
++		.enVsync        = VI_VSYNC_PULSE,
++		.enVsyncNeg     = VI_VSYNC_NEG_HIGH,
++		.enHsync        = VI_HSYNC_VALID_SINGNAL,
++		.enHsyncNeg     = VI_HSYNC_NEG_HIGH,
++		.enVsyncValid   = VI_VSYNC_VALID_SINGAL,
++		.enVsyncValidNeg = VI_VSYNC_VALID_NEG_HIGH,
++		.stTimingBlank  = {
++			.u32HsyncHfb = 0, .u32HsyncAct = 1920, .u32HsyncHbb = 0,
++			.u32VsyncVfb = 0,   .u32VsyncVact = 1080, .u32VsyncVbb = 0,
++			.u32VsyncVbfb = 0,  .u32VsyncVbact = 0,  .u32VsyncVbbb = 0
++		}
++	},
++	.enDataPath         = VI_PATH_ISP,
++	.enInputDataType    = VI_DATA_TYPE_RGB,
++	.bDataRev           = HI_FALSE,
++	.stDevRect          = {
++		.s32X           = 200,
++		.s32Y           = 20,
++		.u32Width       = 1920,
++		.u32Height      = 1080
++	}
++};
++
++static HIMPP_SENSOR_CONFIG sony_imx323_sensor_config = {
++	.name               = "imx323",
++	.module_path        = "libsns_imx323.so",
++	.combo_dev_attr     = &sony_imx323_combo_dev_attr,
++	.isp_pub_attr       = &sony_imx323_pub_attr,
++	.vi_dev_attr        = &sony_imx323_dev_attr
++};
++
+ HimppVideoSensorMap himpp_video_sensor_map;
+ 
+ class HimppVideoSensorInitializer
+@@ -887,6 +945,7 @@
+ 		addSensor(smartsens_sc1145_sensor_config);
+ 		addSensor(smartsens_sc2135_sensor_config);
+ 		addSensor(sony_imx222_sensor_config);
++		addSensor(sony_imx323_sensor_config);
+ #undef addSensor
+ 	}
+ };

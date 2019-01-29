@@ -20,7 +20,7 @@ endif
 
 define ROOTFS_SQUASHFS_CMD
 	$(HOST_DIR)/bin/mksquashfs $(TARGET_DIR) $@ -noappend \
-		$(ROOTFS_SQUASHFS_ARGS)
+		$(ROOTFS_SQUASHFS_ARGS) -b 64K -always-use-fragments
 endef
 
 $(eval $(call ROOTFS_TARGET,squashfs))

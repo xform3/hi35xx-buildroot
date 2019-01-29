@@ -4,17 +4,22 @@
 #
 
 HIMPP_PREFIX=/usr
-SENSOR_TYPE=$(fw_printenv sensor_type 2>/dev/null)
-SENSOR_TYPE=${SENSOR_TYPE:12}
+# SENSOR_TYPE=$(cat /proc/cmdline | awk -F"sensor=" '{print $2}' | awk -F" " '{ print $1 }')
+SENSOR_TYPE=$(awk -F '=' '$1=="sensor"{print $2}' RS=" " /proc/cmdline)
 SENSOR_TYPE=${SENSOR_TYPE:-ar0130}
+
+# OSMEM=$(cat /proc/cmdline | awk -F"mem=" '{print $2}' | awk -F" " '{ print $1 }')
+OSMEM=$(awk -F '=' '$1=="mem"{print $2}' RS=" " /proc/cmdline)
+OSMEM=${OSMEM:-32M}
+# TOTALMEM=$(cat /proc/cmdline | awk -F"total=" '{print $2}' | awk -F" " '{ print $1 }')
+TOTALMEM=$(awk -F '=' '$1=="total"{print $2}' RS=" " /proc/cmdline)
+TOTALMEM=${TOTALMEM:-64M}
 
 start() {
     (
       echo -n "Starting himpp: "
       cd ${HIMPP_PREFIX}/lib/himpp-ko
-      osmem=$(cat /proc/cmdline 2>/dev/null | \
-              sed -nr 's/mem=([^[:space:]]+).*/\1/p')
-      ./load3518e.sh -i -sensor ${SENSOR_TYPE}
+      ./load3518e.sh -i -sensor ${SENSOR_TYPE} -osmem=${OSMEM} -totalmem=${TOTALMEM}
       [ $? = 0 ] && echo "OK" || echo "FAIL"
     )
 }
@@ -23,7 +28,7 @@ stop() {
     (
       echo -n "Stopping himpp: "
       cd ${HIMPP_PREFIX}/lib/himpp-ko
-      ./load3518e.sh -r
+      ./load3518e.sh -r -sensor ${SENSOR_TYPE} -osmem=${OSMEM} -totalmem=${TOTALMEM}
       [ $? = 0 ] && echo "OK" || echo "FAIL"
     )
 }
