@@ -1,0 +1,35 @@
+menu "User config options"
+
+###############################################################################
+comment "If you don`t know what is it - please don`t touch this"
+comment "######################################################"
+comment "FW_ENV CONFIG"
+comment "######################################################"
+config BR2_PACKAGE_FW_ENV_OFFSET
+	string "Fw_env config device offset"
+	default "0x80000"
+	depends on BR2_PACKAGE_UBOOT_TOOLS
+config BR2_PACKAGE_FW_ENV_SIZE
+	string "Fw_env config env size"
+	default "0x40000"
+	depends on BR2_PACKAGE_UBOOT_TOOLS
+config BR2_PACKAGE_FW_ENV_SECTOR_SIZE
+	string "Fw_env config sector size"
+	default "0x10000"
+	depends on BR2_PACKAGE_UBOOT_TOOLS	
+config BR2_PACKAGE_FW_ENV_NUMBER_OF_SECTORS
+	string "Fw_env config number of sectors"
+	default ""
+	depends on BR2_PACKAGE_UBOOT_TOOLS
+comment "######################################################"
+comment "HISI CONFIG"
+comment "######################################################"
+# config BR2_PACKAGE_HISI_TOTAL_MEM
+# 	string "Himpp total memory on device"
+# 	default "64M"
+# 	depends on BR2_PACKAGE_UBOOT_TOOLS
+# config BR2_PACKAGE_HISI_VIDEO_MEM
+# 	string "Himpp video memory on device"
+# 	default "32M"
+# 	depends on BR2_PACKAGE_UBOOT_TOOLS
+endmenu

@@ -1,6 +1,9 @@
 /output
+/images
+/arm-unknown-linux-uclibcgnueabi
 /dl
 /.auto.deps
+/.config*
 /.config.cmd
 /.config.old
 /..config.tmp
@@ -16,3 +19,11 @@
 /zft_lab
 
 board/hisilicon/hi3518/fs-overlay/root/\.ssh/authorized_keys
+/package/hisi-rpc-config/build/
+/package/hisi-rpc-config/dist/
+/package/hisi-cam-config/build/
+/package/hisi-cam-config/dist/
+/package/ipc_server/build/
+/package/ipc_server/dist/
+
+nooo/
