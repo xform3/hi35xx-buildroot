@@ -1,0 +1,44 @@
+#!/bin/sh
+#
+# Start the update....
+#
+
+case "$1" in 
+       start)
+
+          DL_SITE=$(fw_printenv update_server 2>/dev/null)
+          DL_SITE=${DL_SITE:14}
+          DL_SITE=${DL_SITE:-dl.middns.info}
+
+          USERFS_DIR=/media/userfs
+          TMPFS_DIR=/media
+          mount tmpfs /media -t tmpfs -o size=96m
+
+          [[ -d $USERFS_DIR ]] || mkdir $USERFS_DIR
+          mount -t squashfs /dev/mtdblock4 $USERFS_DIR
+
+          LOCAL_VERSION=$(cat $USERFS_DIR/version 2>/dev/null)
+          LOCAL_VERSION=${LOCAL_VERSION:-0.0}
+          UPDATE_VERSION=$(wget -q -O - http://${DL_SITE}/update_version)
+
+
+          if awk -v n1="$LOCAL_VERSION" -v n2="$UPDATE_VERSION" 'BEGIN { exit (n1 < n2) }' /dev/null; then
+              echo Update not required 
+          else echo Need update!; 
+              echo START UPDATE FROM === $DL_SITE ===
+              [[ -d $TMPFS_DIR ]] || mkdir $TMPFS_DIR
+              cd $TMPFS_DIR
+              ping -W 10 -w 10 -c 1 ${DL_SITE} > /dev/null && wget -q -O - http://${DL_SITE}/update.sh | sh -s "$UPDATE_VERSION"
+          fi
+          ;;       
+       stop) 
+          umount /media/userfs/
+          umount /media
+          ;;
+      *)
+          echo "Usage: $0 {start|stop}" >&2
+          exit 1
+          ;;
+esac
+exit $?
+

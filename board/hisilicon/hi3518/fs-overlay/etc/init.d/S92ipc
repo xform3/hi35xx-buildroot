@@ -1,0 +1,50 @@
+#!/bin/sh
+#
+# Start the ipc....
+#
+
+USERFS_DIR=/media/userfs
+PATH=/bin:/usr/bin:/sbin:/usr/sbin:${USERFS_DIR}/bin
+DAEMON=${USERFS_DIR}/bin/app
+PIDPREFIX=/var/run/ipc_app
+IPC_ARGS=""
+
+test -f $DAEMON || exit 0
+
+
+start() {
+    (
+      echo -n "Starting ipc: "
+      if [[ -z $LD_LIBRARY_PATH ]]; then export LD_LIBRARY_PATH=${USERFS_DIR}/lib; else export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:${USERFS_DIR}/lib; fi ;
+      if [[ -z $PATH ]]; then export PATH=${USERFS_DIR}/bin; else export PATH=${PATH}:${USERFS_DIR}/bin; fi ;
+      start-stop-daemon -S -q -p ${PIDPREFIX}.pid --exec ${DAEMON} -- $IPC_ARGS
+      [ $? = 0 ] && echo "OK" || echo "FAIL"
+    )
+}
+
+stop() {
+    (
+      echo -n "Stopping ipc: "
+      start-stop-daemon -K -q -p ${PIDPREFIX}.pid
+      [ $? = 0 ] && echo "OK" || echo "FAIL"
+    )
+}
+
+case "$1" in
+    start)
+	start
+	;;
+    stop)
+	stop
+	;;
+    restart|reload)
+	stop
+	start
+	;;
+  *)
+	echo "Usage: $0 {start|stop|restart}"
+	exit 1
+esac
+
+exit $?
+

@@ -27,3 +27,15 @@ board/hisilicon/hi3518/fs-overlay/root/\.ssh/authorized_keys
 /package/ipc_server/dist/
 
 nooo/
+
+package/hisi-cam-config/
+
+package/hisi-rpc-config/
+
+package/hisi-config-tool/
+
+package/mjpg-streamer_hisilicon_input/
+
+package/ipc_server/
+
+package/libminiupnpc-2\.1/
