@@ -1938,6 +1938,7 @@ menu "ZFT Lab. experiments"
 	source "package/snapshotd/Config.in"
 	source "package/rtspd/Config.in"
 	source "package/usbgpio/Config.in"
+	source "package/hisi-rpc-config/Config.in"
 endmenu
 
 endmenu

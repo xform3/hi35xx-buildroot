@@ -1,0 +1,6 @@
+config BR2_PACKAGE_HISI_RPC_CONFIG
+	bool "hisi-rpc-config"
+	help
+	  Some program to configure hisi chips.
+
+	  https://github.com/OpenIPC/hisi-rpc-config/
