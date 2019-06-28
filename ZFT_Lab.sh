@@ -62,10 +62,7 @@ hi3520dv2()
 upload()
 {
   # Upload current firmware to TFTP server
-  scp output/images/uImage root@172.28.200.72:/srv/tftp/
-  #
-  # Upload current firmware to Desktop
-  scp output/images/uImage zig@172.28.200.74:~
+  scp output/images/uImage root@172.28.200.72:/srv/tftp/uImage
 }
 
 

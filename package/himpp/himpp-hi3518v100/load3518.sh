@@ -116,7 +116,7 @@ insert_ko()
     #source ./lowpower.sh > /dev/null
 
     # pinmux configuration
-    source ./pinmux_hi3518.sh rmii i2c > /dev/null
+    source ./pinmux_hi3518.sh none i2c > /dev/null
 
     # clock configuration
     source ./clkcfg_hi3518.sh > /dev/null

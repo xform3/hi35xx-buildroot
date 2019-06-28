@@ -173,9 +173,12 @@ rmii)
     echo "use rmii";
     net_rmii_mode;
 ;;
-*)
+mii)
     echo "use mii";
     net_mii_mode;
+;;
+*)
+    echo "none";
 ;;
 esac
 
