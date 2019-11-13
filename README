@@ -1,5 +1,5 @@
 
-Updated to work with unknown board based on Hi3518ERBCV100 with 64K flash and 256MiB ram.
+Updated to work with unknown board based on Hi3518ERBCV100 with 192k(uboot)+64k(env) and 256MiB ram.
 
 To build run 'make hi3518v100_defconfig && make'
 
