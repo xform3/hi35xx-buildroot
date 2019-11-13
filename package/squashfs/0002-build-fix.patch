@@ -1,0 +1,23 @@
+diff -ur ./squashfs-tools/mksquashfs.c /home/bvsh3/projects/hi35xx-buildroot/output/build/host-squashfs-3de1687d7432ea9b302c2db9521996f506c140a3/squashfs-tools/mksquashfs.c
+--- ./squashfs-tools/mksquashfs.c	2019-11-09 22:49:39.071514298 -0500
++++ /home/bvsh3/projects/hi35xx-buildroot/output/build/host-squashfs-3de1687d7432ea9b302c2db9521996f506c140a3/squashfs-tools/mksquashfs.c	2019-11-09 22:51:40.380134442 -0500
+@@ -34,6 +34,7 @@
+ #include <stdio.h>
+ #include <stddef.h>
+ #include <sys/types.h>
++#include <sys/sysmacros.h>
+ #include <sys/stat.h>
+ #include <fcntl.h>
+ #include <errno.h>
+diff -ur ./squashfs-tools/unsquashfs.c /home/bvsh3/projects/hi35xx-buildroot/output/build/host-squashfs-3de1687d7432ea9b302c2db9521996f506c140a3/squashfs-tools/unsquashfs.c
+--- ./squashfs-tools/unsquashfs.c	2019-11-09 22:49:39.071514298 -0500
++++ /home/bvsh3/projects/hi35xx-buildroot/output/build/host-squashfs-3de1687d7432ea9b302c2db9521996f506c140a3/squashfs-tools/unsquashfs.c	2019-11-09 22:52:36.811541735 -0500
+@@ -33,6 +33,7 @@
+ 
+ #include <sys/sysinfo.h>
+ #include <sys/types.h>
++#include <sys/sysmacros.h>
+ #include <sys/time.h>
+ #include <sys/resource.h>
+ #include <limits.h>
+

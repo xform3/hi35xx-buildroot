@@ -1,3 +1,10 @@
+
+Updated to work with unknown board based on Hi3518ERBCV100 with 64K flash and 256MiB ram.
+
+To build run 'make hi3518v100_defconfig && make'
+
+--
+
 Buildroot is a simple, efficient and easy-to-use tool to generate embedded
 Linux systems through cross-compilation.
 

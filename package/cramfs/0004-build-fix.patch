@@ -1,0 +1,12 @@
+diff -ur ./mkcramfs.c ../../../saved/host-cramfs-1.1/mkcramfs.c
+--- ./mkcramfs.c	2019-11-09 22:58:33.938971315 -0500
++++ ../../../saved/host-cramfs-1.1/mkcramfs.c	2019-11-08 00:21:41.288535663 -0500
+@@ -24,6 +24,7 @@
+ 
+ #define _GNU_SOURCE
+ #include <sys/types.h>
++#include <sys/sysmacros.h>
+ #include <stdio.h>
+ #include <sys/stat.h>
+ #include <unistd.h>
+

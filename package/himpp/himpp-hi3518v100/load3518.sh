@@ -98,7 +98,7 @@ remove_sns()
 
 mmz_mem_info()
 {
-    BASEADDR=$((0x80000000))
+    BASEADDR=$((0x82B00000))
     TOTALMEM=$((0x04000000))
     local osmem=$(($(cat /proc/cmdline 2>/dev/null | \
                   sed -nr 's/mem=([^[:space:]]+).*/\1/p' | \

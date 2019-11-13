@@ -5,8 +5,7 @@ iface lo inet loopback
 # ethernet
 auto eth0
 iface eth0 inet static
-address 192.168.1.10
-network 192.168.1.0
+address 192.168.9.8
+network 192.168.9.0
 netmask 255.255.255.0
 broadcast 192.168.1.255
-gateway 192.168.1.1
